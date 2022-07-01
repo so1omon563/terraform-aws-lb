@@ -1,1 +1,4 @@
-# TODO - Add additional tests for submodules.
+# TODO - Look into supporting GLBs
+# TODO - Add listener rule submodule
+# TODO - Add working tests and examples - dependant on other modules
+# TODO - Update READMEs with real links, not relative ones.
