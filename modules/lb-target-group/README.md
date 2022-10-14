@@ -19,7 +19,7 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.21.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.34.0 |
 
 ## Modules
 

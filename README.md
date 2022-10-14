@@ -10,9 +10,9 @@ By default, this module will also create a default listener / target group. If a
 
 These default listeners and target groups are created by the [lb-target-group](modules/lb-target-group) and [lb-listener](modules/lb-listener) submodules. The `lb-listener` submodule only supports a single default action on listeners, and it does not support `authenticate-cognito` or `authenticate-oidc` actions at this time.
 
-If desired, the `default_listener` variable can be set to `false`, and you can directly call the submodules to create custom target groups and listeners.
+If desired, the `default_listener` variable can be set to `false`, and you can directly call the submodules to create custom target groups and listeners. For example, if `var.name` is too long to create the default names for the target groups (`<var.name>-def-<port>-<protocol>-<lb_type>`), you should use the submodule to create them with custom names.
 
-See the [multiple-types](examples/multiple-types) example for examples of how this can be done.
+See the [multiple-types](https://github.com/so1omon563/terraform-aws-lb/blob/main/examples/multiple-types) example for examples of how this can be done.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 Auto-generated technical documentation is created using [`terraform-docs`](https://terraform-docs.io/)
 
@@ -27,8 +27,8 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.21.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.3.2 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.34.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
 
 ## Modules
 
@@ -45,6 +45,8 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 |------|------|
 | [aws_lb.alb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb) | resource |
 | [aws_lb.nlb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb) | resource |
+| [aws_shield_protection.alb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/shield_protection) | resource |
+| [aws_wafv2_web_acl_association.alb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl_association) | resource |
 | [random_id.random](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
 
 ## Inputs
@@ -67,10 +69,12 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 | <a name="input_name"></a> [name](#input\_name) | Short, descriptive name of the environment. All resources will be named using this value as a prefix. | `string` | n/a | yes |
 | <a name="input_nlb"></a> [nlb](#input\_nlb) | A map of variables for a network load balancer. Options in `local.nlb_defaults` can be overridden here.<br>  Default values are:<pre>nlb_defaults = {<br>    enable_cross_zone_load_balancing = false<br>  }</pre>See [aws\_lb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb) for more information on the options | `map(string)` | `{}` | no |
 | <a name="input_security_groups"></a> [security\_groups](#input\_security\_groups) | List of Security Group IDs to attach to the LB. Only valid for Load Balancers of type `application`. | `list(string)` | `[]` | no |
+| <a name="input_shield_advanced_protection"></a> [shield\_advanced\_protection](#input\_shield\_advanced\_protection) | Whether or not to enable advanced protection for the created Application Load Balancer. Defaults to `false`. This only works for ALBs, since NLBs can only be protected if an Elastic IP address is attached. Please note that this requires additional subscription to the Shield Advanced Protection service. | `bool` | `false` | no |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | List of subnet IDs to attach to the LB. Please note that updating subnets for Load Balancers of type `network` will force a recreation of the resource. | `list(string)` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tag names and values for tags to apply to all taggable resources created by the module. Default value is a blank map to allow for using Default Tags in the provider. | `map(string)` | `{}` | no |
 | <a name="input_target_type"></a> [target\_type](#input\_target\_type) | If `default_listener` is set to `true`, this is the type of target that you must specify when registering targets with the default target group. The possible values are `instance` (targets are specified by instance ID) or `ip` (targets are specified by IP address) or `lambda` (targets are specified by lambda arn). The default is `instance`. Note that you can't specify targets for a target group using both instance IDs and IP addresses. If the target type is `ip`, specify IP addresses from the subnets of the virtual private cloud (VPC) for the target group, the RFC 1918 range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range (100.64.0.0/10). You can't specify publicly routable IP addresses. | `string` | `"instance"` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The ID of the VPC these resources should be added to. | `string` | n/a | yes |
+| <a name="input_wafv2_acl_arns"></a> [wafv2\_acl\_arns](#input\_wafv2\_acl\_arns) | A list of ARNs of WAFv2 Web ACLs to associate with the load balancer. This is only valid for Load Balancers of type `application`. | `list(string)` | `[]` | no |
 
 ## Outputs
 

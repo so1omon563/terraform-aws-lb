@@ -137,6 +137,12 @@ variable "security_groups" {
   default     = []
 }
 
+variable "shield_advanced_protection" {
+  type        = bool
+  description = "Whether or not to enable advanced protection for the created Application Load Balancer. Defaults to `false`. This only works for ALBs, since NLBs can only be protected if an Elastic IP address is attached. Please note that this requires additional subscription to the Shield Advanced Protection service."
+  default     = false
+}
+
 variable "target_type" {
   description = "If `default_listener` is set to `true`, this is the type of target that you must specify when registering targets with the default target group. The possible values are `instance` (targets are specified by instance ID) or `ip` (targets are specified by IP address) or `lambda` (targets are specified by lambda arn). The default is `instance`. Note that you can't specify targets for a target group using both instance IDs and IP addresses. If the target type is `ip`, specify IP addresses from the subnets of the virtual private cloud (VPC) for the target group, the RFC 1918 range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range (100.64.0.0/10). You can't specify publicly routable IP addresses."
   type        = string
@@ -161,4 +167,10 @@ variable "tags" {
 variable "vpc_id" {
   type        = string
   description = "The ID of the VPC these resources should be added to."
+}
+
+variable "wafv2_acl_arns" {
+  type        = list(string)
+  description = "A list of ARNs of WAFv2 Web ACLs to associate with the load balancer. This is only valid for Load Balancers of type `application`."
+  default     = []
 }

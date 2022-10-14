@@ -3,8 +3,8 @@
 locals {
   tags = var.tags
 
-  alb_tg_name = lower(var.tg_name_override != null ? var.tg_name_override : var.port != null && var.protocol == null ? format("%s-alb-%s", var.name, var.port) : var.port == null && var.protocol != null ? format("%s-alb-%s", var.name, var.protocol) : var.port != null && var.protocol != null ? format("%s-alb-%s-%s", var.name, var.port, var.protocol) : format("%s-alb-tg", var.name))
-  nlb_tg_name = lower(var.tg_name_override != null ? var.tg_name_override : var.port != null && var.protocol == null ? format("%s-nlb-%s", var.name, var.port) : var.port == null && var.protocol != null ? format("%s-nlb-%s", var.name, var.protocol) : var.port != null && var.protocol != null ? format("%s-nlb-%s-%s", var.name, var.port, var.protocol) : format("%s-nlb-tg", var.name))
+  alb_tg_name = lower(var.tg_name_override != null ? var.tg_name_override : var.port != null && var.protocol == null ? format("%s-%s-alb", var.name, var.port) : var.port == null && var.protocol != null ? format("%s-%s-alb", var.name, var.protocol) : var.port != null && var.protocol != null ? format("%s-%s-%s-alb", var.name, var.port, var.protocol) : format("%s-alb-tg", var.name))
+  nlb_tg_name = lower(var.tg_name_override != null ? var.tg_name_override : var.port != null && var.protocol == null ? format("%s-%s-nlb", var.name, var.port) : var.port == null && var.protocol != null ? format("%s-%s-nlb", var.name, var.protocol) : var.port != null && var.protocol != null ? format("%s-%s-%s-nlb", var.name, var.port, var.protocol) : format("%s-nlb-tg", var.name))
 
   # Sets the load balancer type so for_each can be used to create the appropriate resources. Only care about the key here, so the value is set to "ignore"
   alb_type = var.load_balancer_type == "application" ? { application = "ignore" } : {}
