@@ -8,7 +8,7 @@ locals {
   nlb_type = var.load_balancer_type == "network" ? { network = "ignore" } : {}
 
   alb_name = lower(var.lb_name_override != null ? var.lb_name_override : var.lb_name_random == true && var.lb_name_type == null ? format("%s-%s-alb", var.name, random_id.random.hex) : var.lb_name_random == false && var.lb_name_type != null ? format("%s-%s-alb", var.name, var.lb_name_type) : var.lb_name_random == true && var.lb_name_type != null ? format("%s-%s-%s-alb", var.name, var.lb_name_type, random_id.random.hex) : format("%s-alb", var.name))
-  nlb_name = lower(var.lb_name_override != null ? var.lb_name_override : var.lb_name_random == true && var.lb_name_type == null ? format("%s-%s-nlb", var.name, random_id.random.hex) : var.lb_name_random == false && var.lb_name_type != null ? format("%s-%s-alb", var.name, var.lb_name_type) : var.lb_name_random == true && var.lb_name_type != null ? format("%s-%s-%s-alb", var.name, var.lb_name_type, random_id.random.hex) : format("%s-nlb", var.name))
+  nlb_name = lower(var.lb_name_override != null ? var.lb_name_override : var.lb_name_random == true && var.lb_name_type == null ? format("%s-%s-nlb", var.name, random_id.random.hex) : var.lb_name_random == false && var.lb_name_type != null ? format("%s-%s-nlb", var.name, var.lb_name_type) : var.lb_name_random == true && var.lb_name_type != null ? format("%s-%s-%s-nlb", var.name, var.lb_name_type, random_id.random.hex) : format("%s-nlb", var.name))
 
   alb_defaults = {
     drop_invalid_header_fields = false
