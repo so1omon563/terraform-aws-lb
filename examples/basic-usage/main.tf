@@ -102,7 +102,8 @@ resource "aws_acm_certificate" "dummy" {
 ## Includes `name_type` value (can be whatever you want) to differentiate it from the other ALB
 ## Could have also used the `name_random` options to add a random hex value to the name.
 module "alb-public" {
-  source = "../../"
+  source  = "so1omon563/lb/aws"
+  version = "1.0.0"
 
   name = var.name
   tags = {
@@ -119,7 +120,8 @@ output "alb-public" { value = module.alb-public }
 
 ## Creates with a default HTTP listener / Target Group on private subnets
 module "alb" {
-  source = "../../"
+  source  = "so1omon563/lb/aws"
+  version = "1.0.0"
 
   name = var.name
   tags = {
@@ -138,7 +140,8 @@ output "alb" { value = module.alb }
 
 ## Creates with a default TCP listener / Target Group on public subnets
 module "nlb" {
-  source = "../../"
+  source  = "so1omon563/lb/aws"
+  version = "1.0.0"
 
   name = var.name
   tags = {
