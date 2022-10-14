@@ -101,7 +101,8 @@ resource "aws_acm_certificate" "dummy" {
 # Creating load balancers with `default_listener` set to `false` so we can create customized target groups and listeners.
 # Creating 2 ALBs with the same details to show the name_random option
 module "alb-app-1" {
-  source = "../../"
+  source  = "so1omon563/lb/aws"
+  version = "1.0.0"
 
   name               = var.name
   tags               = var.tags
@@ -120,7 +121,8 @@ module "alb-app-1" {
 output "alb-app-1" { value = module.alb-app-1 }
 
 module "alb-app-2" {
-  source = "../../"
+  source  = "so1omon563/lb/aws"
+  version = "1.0.0"
 
   name               = var.name
   tags               = var.tags
@@ -141,7 +143,8 @@ output "alb-app-2" { value = module.alb-app-2 }
 # Creating an NLB
 
 module "nlb" {
-  source = "../../"
+  source  = "so1omon563/lb/aws"
+  version = "1.0.0"
 
   name               = var.name
   tags               = var.tags
@@ -157,7 +160,8 @@ output "nlb" { value = module.nlb }
 
 # Create Target Groups
 module "alb-tg-http" {
-  source = "../../modules//lb-target-group/"
+  source  = "so1omon563/lb/aws//modules/lb-target-group"
+  version = "1.0.0"
 
   name               = var.name
   tags               = var.tags
@@ -169,7 +173,8 @@ module "alb-tg-http" {
 output "alb-tg-http" { value = module.alb-tg-http }
 
 module "alb-tg-http-8080" {
-  source = "../../modules//lb-target-group/"
+  source  = "so1omon563/lb/aws//modules/lb-target-group"
+  version = "1.0.0"
 
   name               = var.name
   tags               = var.tags
@@ -181,7 +186,8 @@ module "alb-tg-http-8080" {
 output "alb-tg-http-8080" { value = module.alb-tg-http-8080 }
 
 module "nlb-tg-tcp" {
-  source = "../../modules//lb-target-group/"
+  source  = "so1omon563/lb/aws//modules/lb-target-group"
+  version = "1.0.0"
 
   name               = var.name
   tags               = var.tags
@@ -195,7 +201,8 @@ output "nlb-tg-tcp" { value = module.nlb-tg-tcp }
 # Create listeners
 
 module "alb-listener-basic-http" {
-  source = "../../modules//lb-listener/"
+  source  = "so1omon563/lb/aws//modules/lb-listener"
+  version = "1.0.0"
 
   tags                     = var.tags
   load_balancer_arn        = module.alb-app-1.lb.application.arn
@@ -206,7 +213,8 @@ module "alb-listener-basic-http" {
 output "alb-listener-basic-http" { value = module.alb-listener-basic-http }
 
 module "alb-listener-basic-https" {
-  source = "../../modules//lb-listener/"
+  source  = "so1omon563/lb/aws//modules/lb-listener"
+  version = "1.0.0"
 
   tags                     = var.tags
   load_balancer_arn        = module.alb-app-1.lb.application.arn
@@ -219,7 +227,8 @@ module "alb-listener-basic-https" {
 output "alb-listener-basic-https" { value = module.alb-listener-basic-https }
 
 module "alb-listener-fixed-response" {
-  source = "../../modules//lb-listener/"
+  source  = "so1omon563/lb/aws//modules/lb-listener"
+  version = "1.0.0"
 
   tags                        = var.tags
   load_balancer_arn           = module.alb-app-1.lb.application.arn
@@ -232,7 +241,8 @@ module "alb-listener-fixed-response" {
 output "alb-listener-fixed-response" { value = module.alb-listener-fixed-response }
 
 module "alb-listener-redirect" {
-  source = "../../modules//lb-listener/"
+  source  = "so1omon563/lb/aws//modules/lb-listener"
+  version = "1.0.0"
 
   tags                 = var.tags
   load_balancer_arn    = module.alb-app-1.lb.application.arn
@@ -245,7 +255,8 @@ module "alb-listener-redirect" {
 output "alb-listener-redirect" { value = module.alb-listener-redirect }
 
 module "alb-listener-forward-block" {
-  source = "../../modules//lb-listener/"
+  source  = "so1omon563/lb/aws//modules/lb-listener"
+  version = "1.0.0"
 
   tags              = var.tags
   load_balancer_arn = module.alb-app-1.lb.application.arn
@@ -260,7 +271,8 @@ module "alb-listener-forward-block" {
 output "alb-listener-forward-block" { value = module.alb-listener-forward-block }
 
 module "nlb-listener-tcp" {
-  source = "../../modules//lb-listener/"
+  source  = "so1omon563/lb/aws//modules/lb-listener"
+  version = "1.0.0"
 
   tags                     = var.tags
   load_balancer_arn        = module.nlb.lb.network.arn
@@ -271,7 +283,8 @@ module "nlb-listener-tcp" {
 output "nlb-listener-tcp" { value = module.nlb-listener-tcp }
 
 module "nlb-listener-tls" {
-  source = "../../modules//lb-listener/"
+  source  = "so1omon563/lb/aws//modules/lb-listener"
+  version = "1.0.0"
 
   tags                     = var.tags
   load_balancer_arn        = module.nlb.lb.network.arn
