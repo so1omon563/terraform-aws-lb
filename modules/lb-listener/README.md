@@ -6,7 +6,13 @@ This module only supports a single default action at this time.
 
 This module does not support `authenticate-cognito` or `authenticate-oidc` actions at this time.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 Auto-generated technical documentation is created using [`terraform-docs`](https://terraform-docs.io/)
+## Examples
+
+```hcl
+# See examples under the top level examples directory for more information on how to use this module.
+```
 
 ## Requirements
 
@@ -19,7 +25,7 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.21.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.35.0 |
 
 ## Modules
 
@@ -61,4 +67,6 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_listener"></a> [listener](#output\_listener) | Collection of outputs for the listener. |
+
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
