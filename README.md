@@ -8,13 +8,19 @@ Creates a Load Balancer (Application or Network).
 
 By default, this module will also create a default listener / target group. If a `certificate_arn` is provided, it will create it on port 443 and HTTPS or TLS, depending on the `load_balancer_type`. If no `certificate_arn` is provided, it creates it on port 80 and HTTP / TCP.
 
-These default listeners and target groups are created by the [lb-target-group](modules/lb-target-group) and [lb-listener](modules/lb-listener) submodules. The `lb-listener` submodule only supports a single default action on listeners, and it does not support `authenticate-cognito` or `authenticate-oidc` actions at this time.
+These default listeners and target groups are created by the `lb-target-group` and `lb-listener` submodules in the `modules` directory. The `lb-listener` submodule only supports a single default action on listeners, and it does not support `authenticate-cognito` or `authenticate-oidc` actions at this time.
 
 If desired, the `default_listener` variable can be set to `false`, and you can directly call the submodules to create custom target groups and listeners. For example, if `var.name` is too long to create the default names for the target groups (`<var.name>-def-<port>-<protocol>-<lb_type>`), you should use the submodule to create them with custom names.
 
-See the [multiple-types](https://github.com/so1omon563/terraform-aws-lb/blob/main/examples/multiple-types) example for examples of how this can be done.
+See the `multiple-types` example in the `examples` directory for examples of how this can be done.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 Auto-generated technical documentation is created using [`terraform-docs`](https://terraform-docs.io/)
+## Examples
+
+```hcl
+# See examples under the top level examples directory for more information on how to use this module.
+```
 
 ## Requirements
 
@@ -27,7 +33,7 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.34.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.35.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
 
 ## Modules
@@ -83,4 +89,6 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 | <a name="output_default_listener"></a> [default\_listener](#output\_default\_listener) | Collection of outputs for the Default Listener - if one is created. |
 | <a name="output_default_tg"></a> [default\_tg](#output\_default\_tg) | Collection of outputs for the Default Target Group - if one is created. |
 | <a name="output_lb"></a> [lb](#output\_lb) | Collection of outputs for the Load Balancer |
+
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
