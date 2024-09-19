@@ -25,7 +25,7 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.35.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.67.0 |
 
 ## Modules
 
@@ -43,7 +43,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_alb_health_check"></a> [alb\_health\_check](#input\_alb\_health\_check) | Map of health check options for ALBs. Options that have associated validations have defaults here. All other options in `local.alb_health_check_defaults` can be overridden here.<br>  If overriding, you MUST include values for `enabled` and `port` in addition to overrides for the other default values.<br>  Default values are:<pre>alb_health_check_defaults = {<br>    enabled             = true<br>    healthy_threshold   = 3<br>    interval            = 30<br>    matcher             = null<br>    path                = null<br>    port                = "traffic-port"<br>    protocol            = "HTTP"<br>    timeout             = 5<br>    unhealthy_threshold = 3<br>  }</pre>See [health\_check](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group#health_check) for documentation of the options. | `map(string)` | <pre>{<br>  "enabled": true,<br>  "port": "traffic-port"<br>}</pre> | no |
-| <a name="input_alb_stickiness"></a> [alb\_stickiness](#input\_alb\_stickiness) | Map of stickiness options for ALBs. In order to override, you will need to populate all appropriate options. See [stickiness](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group#stickiness) for documentation of the options. | `map(string)` | <pre>{<br>  "cookie_duration": 86400,<br>  "cookie_name": null,<br>  "enabled": true,<br>  "type": "lb_cookie"<br>}</pre> | no |
+| <a name="input_alb_stickiness"></a> [alb\_stickiness](#input\_alb\_stickiness) | Map of stickiness options for ALBs. In order to override, you will need to populate all appropriate options. See [stickiness](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group#stickiness) for documentation of the options. | `map(string)` | <pre>{<br>  "cookie_duration": 86400,<br>  "cookie_name": null,<br>  "enabled": false,<br>  "type": "lb_cookie"<br>}</pre> | no |
 | <a name="input_deregistration_delay"></a> [deregistration\_delay](#input\_deregistration\_delay) | Amount time for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused. The range is 0-3600 seconds. The default value is 300 seconds. | `string` | `300` | no |
 | <a name="input_lambda_multi_value_headers_enabled"></a> [lambda\_multi\_value\_headers\_enabled](#input\_lambda\_multi\_value\_headers\_enabled) | Whether the request and response headers exchanged between the load balancer and the Lambda function include arrays of values or strings. Only applies when `target_type` is `lambda`. Default is `false`. | `bool` | `false` | no |
 | <a name="input_load_balancer_type"></a> [load\_balancer\_type](#input\_load\_balancer\_type) | The type of load balancer the target group is going to be attached to. Possible values are `application` or `network`. The default value is `application`. | `string` | `"application"` | no |
