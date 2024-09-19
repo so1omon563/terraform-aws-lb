@@ -48,7 +48,7 @@ variable "alb_stickiness" {
   type        = map(string)
   description = "Map of stickiness options for ALBs. In order to override, you will need to populate all appropriate options. See [stickiness](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group#stickiness) for documentation of the options."
   default = {
-    enabled         = true
+    enabled         = false
     cookie_duration = 86400
     cookie_name     = null
     type            = "lb_cookie"
