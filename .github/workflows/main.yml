@@ -1,21 +1,33 @@
-name: Bump version
+name: Release
+
 on:
   pull_request_target:
+    branches:
+      - main
     types:
       - closed
+
+permissions:
+  contents: write
+
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
+  release:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: "0"
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.61.0
-        env:
-          DEFAULT_BUMP: none
-          RELEASE_BRANCHES: main
+        id: version
+        uses: so1omon563/custom-semver-bumper@v1
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
+          default_bump: none
+
+      - name: Create GitHub release
+        if: steps.version.outputs.should_release == 'true'
+        uses: so1omon563/release-creator@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.version.outputs.new_version }}
+          tag-prefix: v
+          move-major-tag: true
+          move-minor-tag: true
