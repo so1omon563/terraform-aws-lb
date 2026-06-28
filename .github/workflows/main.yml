@@ -22,12 +22,20 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           default_bump: none
 
+      - name: Find previous release
+        id: previous-release
+        if: steps.version.outputs.should_release == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="$(gh release list --exclude-drafts --exclude-pre-releases --limit 1 --json tagName --jq '.[0].tagName // ""')"
+          echo "tag=${tag}" >> "${GITHUB_OUTPUT}"
+
       - name: Create GitHub release
         if: steps.version.outputs.should_release == 'true'
         uses: so1omon563/release-creator@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.version.outputs.new_version }}
+          from-tag: ${{ steps.previous-release.outputs.tag }}
           tag-prefix: v
-          move-major-tag: true
-          move-minor-tag: true
