@@ -21,7 +21,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           default_bump: none
-          branch_name: ${{ github.event.pull_request.head.ref }}
 
       - name: Create GitHub release
         if: steps.version.outputs.should_release == 'true'
@@ -29,5 +28,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.version.outputs.new_version }}
+          tag-prefix: v
           move-major-tag: true
           move-minor-tag: true
