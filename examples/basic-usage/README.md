@@ -125,8 +125,8 @@ resource "aws_acm_certificate" "dummy" {
 
 ## Create the load balancers
 ## Creates with a default HTTPS listener / Target Group on public subnets
-## Includes `name_type` value (can be whatever you want) to differentiate it from the other ALB
-## Could have also used the `name_random` options to add a random hex value to the name.
+## Includes `lb_name_type` value (can be whatever you want) to differentiate it from the other ALB
+## Could have also used the `lb_name_random` option to add a random hex value to the name.
 module "alb-public" {
   source  = "so1omon563/lb/aws"
   version = "1.0.0"
@@ -135,7 +135,7 @@ module "alb-public" {
   tags = {
     example = "true"
   }
-  name_type          = "public"
+  lb_name_type       = "public"
   vpc_id             = module.vpc.vpc_id
   subnets            = data.aws_subnets.public_subnets.ids
   security_groups    = [module.web-sg.security-group.id]
