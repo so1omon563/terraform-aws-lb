@@ -1,5 +1,25 @@
-variable "name" {}
-variable "tags" {}
+terraform {
+  required_version = ">= 0.14"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 3.55, < 6.0"
+    }
+    tls = {
+      source  = "hashicorp/tls"
+      version = ">= 3.2, < 4.0"
+    }
+  }
+}
+
+variable "name" {
+  type = string
+}
+
+variable "tags" {
+  type = map(string)
+}
 
 # Create VPC
 module "vpc" {
