@@ -127,7 +127,7 @@ resource "aws_acm_certificate" "dummy" {
 }
 
 # Creating load balancers with `default_listener` set to `false` so we can create customized target groups and listeners.
-# Creating 2 ALBs with the same details to show the name_random option
+# Creating 2 ALBs with the same details to show the lb_name_random option
 module "alb-app-1" {
   source  = "so1omon563/lb/aws"
   version = "1.0.0"
@@ -143,8 +143,8 @@ module "alb-app-1" {
   alb = {
     idle_timeout = 20
   }
-  name_type   = "app"
-  name_random = true
+  lb_name_type   = "app"
+  lb_name_random = true
 }
 output "alb-app-1" { value = module.alb-app-1 }
 
@@ -163,8 +163,8 @@ module "alb-app-2" {
   alb = {
     idle_timeout = 20
   }
-  name_type   = "app"
-  name_random = true
+  lb_name_type   = "app"
+  lb_name_random = true
 }
 output "alb-app-2" { value = module.alb-app-2 }
 
