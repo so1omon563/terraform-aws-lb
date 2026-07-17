@@ -46,10 +46,11 @@ locals {
 
 
   # Using these locals forces the resources to ignore these values if `target_type` is `lambda`.
-  port                      = var.target_type == "lambda" ? null : var.port
-  alb_health_check_protocol = var.target_type == "lambda" ? null : local.alb_health_check.protocol
-  protocol                  = var.target_type == "lambda" ? null : var.protocol
-  vpc_id                    = var.target_type == "lambda" ? null : var.vpc_id
+  port                          = var.target_type == "lambda" ? null : var.port
+  alb_health_check_protocol     = var.target_type == "lambda" ? null : local.alb_health_check.protocol
+  load_balancing_algorithm_type = var.target_type == "lambda" ? null : var.load_balancing_algorithm_type
+  protocol                      = var.target_type == "lambda" ? null : var.protocol
+  vpc_id                        = var.target_type == "lambda" ? null : var.vpc_id
 
   # Using these locals forces the resources to ignore these values unless `target_type` is `lambda`.
   lambda_multi_value_headers_enabled = var.target_type == "lambda" ? var.lambda_multi_value_headers_enabled : null
