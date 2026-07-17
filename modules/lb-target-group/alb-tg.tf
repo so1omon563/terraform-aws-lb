@@ -3,12 +3,13 @@ resource "aws_lb_target_group" "alb-tg" {
   name                               = local.alb_tg_name
   deregistration_delay               = var.deregistration_delay
   lambda_multi_value_headers_enabled = local.lambda_multi_value_headers_enabled
+  load_balancing_algorithm_type      = var.load_balancing_algorithm_type
   port                               = local.port
   protocol_version                   = local.protocol_version
   protocol                           = local.protocol
   slow_start                         = var.slow_start
   target_type                        = var.target_type
-  vpc_id                             = var.vpc_id
+  vpc_id                             = local.vpc_id
 
   dynamic "health_check" {
     for_each = local.alb_health_check_enabled

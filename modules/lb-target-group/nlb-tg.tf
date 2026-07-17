@@ -9,7 +9,7 @@ resource "aws_lb_target_group" "nlb-tg" {
   proxy_protocol_v2                  = var.proxy_protocol_v2
   slow_start                         = var.slow_start
   target_type                        = var.target_type
-  vpc_id                             = var.vpc_id
+  vpc_id                             = local.vpc_id
 
   dynamic "health_check" {
     for_each = local.nlb_health_check_enabled
