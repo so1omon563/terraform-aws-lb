@@ -3,7 +3,7 @@ resource "aws_lb_target_group" "alb-tg" {
   name                               = local.alb_tg_name
   deregistration_delay               = var.deregistration_delay
   lambda_multi_value_headers_enabled = local.lambda_multi_value_headers_enabled
-  load_balancing_algorithm_type      = var.load_balancing_algorithm_type
+  load_balancing_algorithm_type      = local.load_balancing_algorithm_type
   port                               = local.port
   protocol_version                   = local.protocol_version
   protocol                           = local.protocol

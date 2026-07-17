@@ -60,6 +60,23 @@ run "network_lb" {
   }
 }
 
+run "lambda_target_group" {
+  command = plan
+
+  variables {
+    name            = "example"
+    subnets         = ["subnet-1234567890abcdef0", "subnet-abcdef01234567890"]
+    security_groups = ["sg-1234567890abcdef0"]
+    target_type     = "lambda"
+    vpc_id          = "vpc-1234567890abcdef0"
+  }
+
+  assert {
+    condition     = output.default_tg["application"].tg["application"].load_balancing_algorithm_type == null
+    error_message = "Expected Lambda target groups to omit the load balancing algorithm."
+  }
+}
+
 run "listener_disabled" {
   command = plan
 
