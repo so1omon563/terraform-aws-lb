@@ -12,12 +12,12 @@ Example shows using Default Tags in the provider as well as passing additional t
 
 ```hcl
 terraform {
-  required_version = ">= 0.14"
+  required_version = ">= 1.5"
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 3.55, < 6.0"
+      version = ">= 3.55"
     }
     tls = {
       source  = "hashicorp/tls"
@@ -53,7 +53,7 @@ variable "tags" {
 
 module "vpc" {
   source  = "so1omon563/vpc/aws"
-  version = "1.0.0"
+  version = "2.3.6"
 
   name = var.name
   tags = var.tags
@@ -328,16 +328,16 @@ output "nlb-listener-tls" { value = module.nlb-listener-tls }
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.55, < 6.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.55 |
 | <a name="requirement_tls"></a> [tls](#requirement\_tls) | >= 3.0, < 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.100.0 |
-| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.4.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.55 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | >= 3.0, < 4.0 |
 
 ## Modules
 
@@ -356,7 +356,7 @@ output "nlb-listener-tls" { value = module.nlb-listener-tls }
 | <a name="module_nlb-listener-tcp"></a> [nlb-listener-tcp](#module\_nlb-listener-tcp) | so1omon563/lb/aws//modules/lb-listener | 1.0.0 |
 | <a name="module_nlb-listener-tls"></a> [nlb-listener-tls](#module\_nlb-listener-tls) | so1omon563/lb/aws//modules/lb-listener | 1.0.0 |
 | <a name="module_nlb-tg-tcp"></a> [nlb-tg-tcp](#module\_nlb-tg-tcp) | so1omon563/lb/aws//modules/lb-target-group | 1.0.0 |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | so1omon563/vpc/aws | 1.0.0 |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | so1omon563/vpc/aws | 2.3.6 |
 | <a name="module_web-sg"></a> [web-sg](#module\_web-sg) | so1omon563/security-group/aws | 1.0.0 |
 
 ## Resources
