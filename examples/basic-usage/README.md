@@ -15,7 +15,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 3.55, < 6.0"
+      version = ">= 3.55"
     }
     tls = {
       source  = "hashicorp/tls"
@@ -44,7 +44,7 @@ variable "name" {
 
 module "vpc" {
   source  = "so1omon563/vpc/aws"
-  version = "1.0.0"
+  version = "2.3.6"
 
   name = var.name
   tags = {
@@ -188,15 +188,15 @@ output "nlb" { value = module.nlb }
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.55, < 6.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.55 |
 | <a name="requirement_tls"></a> [tls](#requirement\_tls) | >= 3.0, < 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.100.0 |
-| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.4.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.55 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | >= 3.0, < 4.0 |
 
 ## Modules
 
@@ -205,7 +205,7 @@ output "nlb" { value = module.nlb }
 | <a name="module_alb"></a> [alb](#module\_alb) | so1omon563/lb/aws | 1.0.0 |
 | <a name="module_alb-public"></a> [alb-public](#module\_alb-public) | so1omon563/lb/aws | 1.0.0 |
 | <a name="module_nlb"></a> [nlb](#module\_nlb) | so1omon563/lb/aws | 1.0.0 |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | so1omon563/vpc/aws | 1.0.0 |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | so1omon563/vpc/aws | 2.3.6 |
 | <a name="module_web-sg"></a> [web-sg](#module\_web-sg) | so1omon563/security-group/aws | 1.0.0 |
 
 ## Resources

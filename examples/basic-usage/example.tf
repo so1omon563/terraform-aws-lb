@@ -4,7 +4,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 3.55, < 6.0"
+      version = ">= 3.55"
     }
     tls = {
       source  = "hashicorp/tls"
@@ -33,7 +33,7 @@ variable "name" {
 
 module "vpc" {
   source  = "so1omon563/vpc/aws"
-  version = "1.0.0"
+  version = "2.3.6"
 
   name = var.name
   tags = {
