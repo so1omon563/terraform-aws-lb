@@ -10,7 +10,7 @@ Example shows using Default Tags in the provider as well as passing additional t
 
 ```hcl
 terraform {
-  required_version = ">= 0.14"
+  required_version = ">= 1.5"
 
   required_providers {
     aws = {
@@ -187,7 +187,7 @@ output "nlb" { value = module.nlb }
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.55 |
 | <a name="requirement_tls"></a> [tls](#requirement\_tls) | >= 3.0, < 4.0 |
 
